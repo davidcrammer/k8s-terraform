@@ -33,8 +33,3 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
     node_count = 1
   }
 }
-
-output "kube_config" {
-  value     = digitalocean_kubernetes_cluster.cluster.kube_config_raw
-  sensitive = true
-}
