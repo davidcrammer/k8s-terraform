@@ -21,3 +21,20 @@ resource "digitalocean_droplet" "example" {
     "example",
   ]
 }
+
+resource "digitalocean_kubernetes_cluster" "cluster" {
+  version = "1.19.3-do.0"
+  name   = "example-cluster"
+  region = "nyc1"
+
+  node_pool {
+    name       = "worker-pool"
+    size       = "s-1vcpu-2gb"
+    node_count = 1
+  }
+}
+
+output "kube_config" {
+  value     = digitalocean_kubernetes_cluster.cluster.kube_config_raw
+  sensitive = true
+}
