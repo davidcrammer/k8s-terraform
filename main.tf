@@ -23,7 +23,7 @@ resource "digitalocean_droplet" "example" {
 }
 
 resource "digitalocean_kubernetes_cluster" "cluster" {
-  version = "1.19.3-do.0"
+  version = "1.22.8-do.1"
   name   = "example-cluster"
   region = "nyc1"
 
