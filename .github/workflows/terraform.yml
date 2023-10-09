@@ -19,7 +19,7 @@ jobs:
 
       - name: Terraform Initialize
         run: |
-          terraform init \
+          terraform init -reconfigure \
             -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY }}" \
             -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY }}"
 
