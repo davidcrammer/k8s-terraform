@@ -1,4 +1,5 @@
 provider "digitalocean" {
+  source = "digitalocean/digitalocean"
   token = var.do_token
 }
 
