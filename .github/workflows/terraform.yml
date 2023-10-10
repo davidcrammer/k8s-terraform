@@ -21,13 +21,13 @@ jobs:
 
       - name: Terraform Initialize
         run: |
-          terraform init -reconfigure \
-            -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY }}" \
+          terraform init -reconfigure\
+            -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY }}"\
             -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY }}"
 
       - name: Terraform Plan
-        run: terraform plan \
-          -var "do_token=${{ secrets.DO_TOKEN }}" \
+        run: terraform plan\
+          -var "do_token=${{ secrets.DO_TOKEN }}"\
           -var "github_token=${{ secrets.GH_TOKEN }}"
 
       - name: Terraform Apply
