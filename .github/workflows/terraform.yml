@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Plan
         run: terraform plan \
           -var "do_token=${{ secrets.DO_TOKEN }}" \
-          -var "github_token=${{ secrets.GH_TOKEN }}" \
+          -var "github_token=${{ secrets.GH_TOKEN }}"
 
       - name: Terraform Apply
         if: github.event_name == 'push'
