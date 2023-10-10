@@ -3,6 +3,10 @@ terraform {
     digitalocean = {
       source = "digitalocean/digitalocean"
     }
+    flux = {
+      source = "fluxcd/flux"
+      version = "1.1.1"
+    }
   }
 }
 
