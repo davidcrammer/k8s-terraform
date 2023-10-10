@@ -1,9 +1,3 @@
-provider "kind" {}
-
-resource "kind_cluster" "this" {
-  name = "flux-e2e"
-}
-
 provider "github" {
   owner = var.github_org
   token = var.github_token
@@ -23,10 +17,10 @@ resource "github_repository_deploy_key" "this" {
 
 provider "flux" {
   kubernetes = {
-    host                   = kind_cluster.this.endpoint
-    client_certificate     = kind_cluster.this.client_certificate
-    client_key             = kind_cluster.this.client_key
-    cluster_ca_certificate = kind_cluster.this.cluster_ca_certificate
+    host                   = digitalocean_kubernetes_cluster.cluster.endpoint
+    client_certificate     = base64decode(digitalocean_kubernetes_cluster.cluster.kube_config.0.client_certificate)
+    client_key             = base64decode(digitalocean_kubernetes_cluster.cluster.kube_config.0.client_key)
+    cluster_ca_certificate = base64decode(digitalocean_kubernetes_cluster.cluster.kube_config.0.cluster_ca_certificate)
   }
   git = {
     url = "ssh://git@github.com/${var.github_org}/${var.github_repository}.git"
