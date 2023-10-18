@@ -14,7 +14,7 @@ resource "github_repository_deploy_key" "this" {
   key        = tls_private_key.flux.public_key_openssh
   read_only  = "false"
 }
-
+ 
 provider "flux" {
   kubernetes = {
     host                   = digitalocean_kubernetes_cluster.cluster.endpoint
