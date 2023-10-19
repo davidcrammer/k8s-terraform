@@ -26,8 +26,8 @@ jobs:
             -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY }}"
 
       - name: Terraform Plan
-        run: terraform plan -var "do_token=${{ secrets.DO_TOKEN }}" -var "github_token=${{ secrets.GH_TOKEN }}"
+        run: terraform plan -var "do_token=${{ secrets.DO_TOKEN }}" -var "github_token=${{ secrets.GH_TOKEN }}" -var "ssh_private_key=${{ secrets.SSH_PRIVATE_KEY }}" -var "ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}"
 
       - name: Terraform Apply
         if: github.event_name == 'push'
-        run: terraform apply -auto-approve -var "do_token=${{ secrets.DO_TOKEN }}" -var "github_token=${{ secrets.GH_TOKEN }}"
+        run: terraform apply -auto-approve -var "do_token=${{ secrets.DO_TOKEN }}" -var "github_token=${{ secrets.GH_TOKEN }}" -var "ssh_private_key=${{ secrets.SSH_PRIVATE_KEY }}" -var "ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}"

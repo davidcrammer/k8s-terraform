@@ -18,3 +18,14 @@ variable "github_repository" {
   type = string
   default = "example-fluxcd"
 }
+
+variable "ssh_public_key" {
+  description = "SSH public key for the GitHub repository"
+  type = string
+}
+
+variable "ssh_private_key" {
+  description = "SSH deploy key for the GitHub repository"
+  type = string
+  sensitive = true
+}
