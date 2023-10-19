@@ -3,10 +3,15 @@ provider "github" {
   token = var.github_token
 }
 
+resource "tls_private_key" "flux" {
+  algorithm   = "ECDSA"
+  ecdsa_curve = "P256"
+}
+
 resource "github_repository_deploy_key" "this" {
-  title      = "Flux CD New Deploy Key"
+  title      = "Flux"
   repository = var.github_repository
-  key        = var.ssh_public_key
+  key        = tls_private_key.flux.public_key_openssh
   read_only  = "false"
 }
  
@@ -21,7 +26,7 @@ provider "flux" {
     url = "ssh://git@github.com/${var.github_org}/${var.github_repository}.git"
     ssh = {
       username    = "git"
-      private_key = var.ssh_private_key
+      private_key = tls_private_key.flux.private_key_pem
     }
   }
 }
